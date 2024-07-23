@@ -7,9 +7,9 @@ app.use(express.json());
 
 const SECRET = 'SECr3t';  // This should be in an environment variable in a real application
 
-// Define mongoose schemas
+
 const userSchema = new mongoose.Schema({
-    username: {type: String},
+    username: String,
     password: String,
     purchasedCourses: [{type: mongoose.Schema.Types.ObjectId, ref: 'Course'}]
 });
@@ -27,14 +27,14 @@ const courseSchema = new mongoose.Schema({
     published: Boolean
 });
 
-// Define mongoose models
+
 const User = mongoose.model('User', userSchema);
 const Admin = mongoose.model('Admin', adminSchema);
 const Course = mongoose.model('Course', courseSchema);
 
 const authenticateJwt = (req, res, next) => {
     const authHeader = req.headers.authorization;
-    // console.log(authHeader);
+    // console.log(authHeader);6
     if (authHeader) {
         const token = authHeader.split(' ')[1];
         // console.log(token);
@@ -50,10 +50,8 @@ const authenticateJwt = (req, res, next) => {
     }
 };
 
-// Connect to MongoDB
-mongoose.connect('mongodb+srv://sohoxic:soham@cluster0.icr0bt8.mongodb.net/courses', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+
+mongoose.connect('mongodb+srv://sohoxic:iisc@deez-nu.eyz6xx9.mongodb.net/', {
     dbName: "courses"
 });
 
